@@ -1,0 +1,59 @@
+<div class="sidebar sidebar-dark sidebar-fixed border-end" id="sidebar">
+    <div class="sidebar-header border-bottom">
+        <div class="sidebar-brand">
+            <svg class="sidebar-brand-full" width="88" height="32" alt="Logo">
+                <use xlink:href="/img/coreui.svg#full"></use>
+            </svg>
+            <svg class="sidebar-brand-narrow" width="32" height="32" alt="Logo">
+                <use xlink:href="/img/coreui.svg#signet"></use>
+            </svg>
+        </div>
+        <button class="btn-close d-lg-none" type="button" data-coreui-dismiss="offcanvas" data-coreui-theme="dark" aria-label="Close" onclick="coreui.Sidebar.getInstance(document.querySelector(&quot;#sidebar&quot;)).toggle()"></button>
+    </div>
+    <ul class="sidebar-nav" data-coreui="navigation" data-simplebar>
+        <li class="nav-item"><a class="nav-link" href="/dashboard">
+            <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+            </svg> Dashboard</a>
+        </li>
+        <li class="nav-title">Product</li>
+        <li class="nav-item"><a class="nav-link" href="/product">
+            <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-media-stop"></use>
+            </svg> List Product</a>
+        </li>
+        <li class="nav-title">Profile</li>
+        <li class="nav-group"><a class="nav-link" href="/profile">
+            <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-info"></use>
+            </svg> View My Profile</a>
+        </li>
+        <li class="nav-group"><a class="nav-link" href="/profile/changepassword">
+            <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-https"></use>
+            </svg> Change Password</a>
+        </li>
+        <% if (role == 'admin') { %>
+        <li class="nav-title">Admin Only</li>
+        <li class="nav-item"><a class="nav-link" href="/product/add">
+            <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-library-add"></use>
+            </svg> Add Item</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/user/list">
+          <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-address-book"></use>
+          </svg> List User</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/user/add">
+          <svg class="nav-icon">
+                <use xlink:href="/node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
+          </svg> Add User</a>
+        </li>
+        <% } %>
+    </ul>
+    <div class="sidebar-footer border-top d-none d-md-flex">     
+        <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>
+    </div>
+</div>
+<div class="wrapper d-flex flex-column min-vh-100">

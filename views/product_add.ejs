@@ -1,0 +1,99 @@
+<%- include('other/head', {title: 'Add Product'}) %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+		$(document).ready(() => {
+
+$("#form").submit((event) => {
+  event.preventDefault();
+
+  $.ajax({
+    type: 'POST',
+    url: '/product/add %>',
+    data: $('#form').serialize(),
+    dataType: "json",
+    success: (data, textStatus) => {
+                  console.log(data);
+                  document.getElementById("check").innerHTML = data.msg;
+                  $('#stock').val(data.nowStock);
+                  setTimeout(() => {
+                      document.getElementById("check").innerHTML = "";
+                  }, 3000);
+    },
+    error: (data, textStatus) => {
+                  console.log(data);
+                  $('#form')[0].reset();
+                  if (data.status == 400 || data.status == 500) {
+                      document.getElementById("check").innerHTML = data.responseJSON.msg;
+                      setTimeout(() => {
+                          document.getElementById("check").innerHTML = "";
+                      }, 3000);
+                  }
+    }
+  })
+});
+
+});
+    </script>
+  </head>
+  <body>
+    <%- include('other/nav', {role}) %>
+    <%- include('other/header1', {username}) %>
+    <%- include('other/header2', {pathname}) %>
+    <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-5">
+            <div class="card mb-4 mx-4">
+              <div class="card-body p-4">
+                <form id="form" method="post">
+                  <div class="mb-3 row">
+                    <label for="p_id" class="col-sm-5 col-form-label">Product ID</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="p_id" placeholder="Product ID">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="name" class="col-sm-5 col-form-label">Name</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="name" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="manufacturer" class="col-sm-5 col-form-label">Manufacturer</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="manufacturer" placeholder="Manufacturer">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="price" class="col-sm-5 col-form-label">Price</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="price" placeholder="Price">
+                    </div>
+                  </div>
+                  <div class="mb-3 row">
+                    <label for="stock" class="col-sm-5 col-form-label">Stock</label>
+                    <div class="col-sm-5">
+                      <input type="text" class="form-control" name="stock" id="stock" placeholder="Stock">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-5">
+                      <input type="button" onclick="window.history.back();" class="btn btn-secondary px-4" value="Back" />
+                    </div>
+                    <div class="col-3">
+                      <input type="submit" value="Submit" class="btn btn-primary px-4">
+                    </div>
+                  </div>
+                </form>
+                <div class="mssg bg-danger">
+                  <span id="check"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('other/footer') %>
+  </body>

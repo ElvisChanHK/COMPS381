@@ -1,0 +1,15 @@
+    <div class="container-fluid px-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb my-0">
+                <li class="breadcrumb-item">
+                    <a href="/">Home</a>
+                </li>
+                <% pathname.forEach((path) => { %>
+                <li class="breadcrumb-item active">
+                    <span><%= path.charAt(0).toUpperCase() + path.slice(1) %></span>
+                </li>
+                <% }); %>
+            </ol>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Product List</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="../../css/main.css">
+</head>
+
+<body>
+	<div class="col-md-4 col-md-offset-4 form-card">
+		<div>
+			<p>Product List</p>
+		</div>
+		<table class="table table-striped">
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Manufacturer</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th></th>
+            </tr>
+            <% product_list.forEach((product,index) => {%>
+            <tr>
+                <td><%= product.p_id %></td>
+                <td><%= product.name %></td>
+                <td><%= product.manufacturer %></td>
+                <td><%= product.price %></td>
+                <td><%= product.stock %></td>
+                <td><button class="btn btn-primary" onclick="location.href='/product/view/<%= product.p_id %>'">Edit</button></td>
+                <% if (role == "admin") {%>
+                <td><button class="btn btn-danger" id="delete<%= product.p_id %>">Delete</button></td>
+                <% } %>
+            </tr>
+            <% if (role == "admin") {%>
+                <script>
+                    $('#delete<%= product.p_id %>').click(function (event) {
+                        if (confirm('Are you comfirm delete?')) {
+                            $.ajax({
+                                url: '/product/delete/<%= product.p_id %>',
+                                type: "POST",
+                                success: function () {
+                                    alert('Delete successfully!');
+                                    location.reload();
+                                }
+                            });
+                        }
+                    });
+                </script>
+            <% } %>
+            <% })%>
+        </table>
+	</div>
+</body>
+
+</html>

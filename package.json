@@ -1,0 +1,32 @@
+{
+  "name": "s381f-project",
+  "version": "0.0.1",
+  "description": "S381F-Project",
+  "type": "commonjs",
+  "main": "./server.js",
+  "engines": {
+    "npm": ">=10.1.0 <11.0.0",
+    "node": ">=20.7.0 <21.0.0"
+  },
+  "scripts": {
+    "postinstall": "cd public && npm install",
+    "start": "node ./server.js"
+  },
+  "author": "Elvis Chan",
+  "license": "ODbL-1.0",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
+    "nodemon": "^3.0.1"
+  }
+}

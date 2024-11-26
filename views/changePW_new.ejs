@@ -1,0 +1,89 @@
+<%- include('other/head', {title: "Change Password"}) %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+		$(document).ready(() => {
+
+$("#form").submit((event) => {
+  event.preventDefault();
+
+  $.ajax({
+    type: 'POST',
+    url: '/profile/changepassword',
+    data: $('#form').serialize(),
+    dataType: "json",
+    success: (data, textStatus) => {
+                  console.log(data);
+                  $('#form')[0].reset();
+                  document.getElementById("check").innerHTML = data.msg;
+                  setTimeout(() => {
+                      document.getElementById("check").innerHTML = "";
+                  }, 3000);
+    },
+    error: (data, textStatus) => {
+                  console.log(data);
+                  $('#form')[0].reset();
+                  if (data.status == 401 || data.status == 500) {
+                      document.getElementById("check").innerHTML = data.responseJSON.msg;
+                      setTimeout(() => {
+                          document.getElementById("check").innerHTML = "";
+                      }, 3000);
+                  }
+    }
+  })
+});
+
+});
+    </script>
+</head>
+  <body>
+    <%- include('other/nav') %>
+    <%- include('other/header1', {username}) %>
+    <%- include('other/header2', {pathname}) %>
+    <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-4">
+            <div class="card mb-4 mx-4">
+              <div class="card-body p-4">
+                <h3>Change Password</h3>
+                <form id="form" method="post">
+                  <div class="input-group mb-3"><span class="input-group-text">
+                      <svg class="icon">
+                        <use xlink:href="../node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
+                      </svg></span>
+                    <input class="form-control" type="text" name="username" value="<%= username %>" readonly>
+                  </div>
+                  <div class="input-group mb-3"><span class="input-group-text">
+                      <svg class="icon">
+                        <use xlink:href="../node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
+                      </svg></span>
+                    <input class="form-control" type="password" name="old_pw" placeholder="Old Password">
+                  </div>
+                  <div class="input-group mb-3"><span class="input-group-text">
+                    <svg class="icon">
+                      <use xlink:href="../node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
+                    </svg></span>
+                  <input class="form-control" type="password" name="new_pw" placeholder="New Password">
+                </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <input type="submit" value="Submit" class="btn btn-primary px-4">
+                    </div>
+                    <div class="col-3">
+                      <input type="button" onclick="window.history.back();" class="btn btn-secondary px-4" value="Back" />
+                    </div>
+                  </div>
+                </form>
+                <div class="mssg bg-danger">
+                  <span id="check"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('other/footer') %>
+  </body>
+</html>

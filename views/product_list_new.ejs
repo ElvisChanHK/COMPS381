@@ -1,0 +1,58 @@
+<%- include('other/head', {title: 'Product List'}) %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include('other/nav') %>
+    <%- include('other/header1', {username}) %>
+    <%- include('other/header2', {pathname}) %>
+	<div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+        <div class="container">
+		    <div class="card-body p-4">
+            <div class="position-relative top-50 start-50 translate-middle">
+		    	<h3>Product List</h3>
+            </div>
+		        <table class="table table-striped">
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Manufacturer</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th></th>
+                    </tr>
+                    <% product_list.forEach((product,index) => {%>
+                    <tr>
+                        <td><%= product.p_id %></td>
+                        <td><%= product.name %></td>
+                        <td><%= product.manufacturer %></td>
+                        <td><%= product.price %></td>
+                        <td><%= product.stock %></td>
+                        <td><button class="btn btn-primary" onclick="location.href='/product/view/<%= product.p_id %>'">Edit</button></td>
+                        <% if (role == "admin") {%>
+                        <td><button class="btn btn-danger" id="delete<%= product.p_id %>">Delete</button></td>
+                        <% } %>
+                    </tr>
+                    <% if (role == "admin") {%>
+                        <script>
+                            $('#delete<%= product.p_id %>').click(function (event) {
+                                if (confirm('Are you comfirm delete?')) {
+                                    $.ajax({
+                                        url: '/product/delete/<%= product.p_id %>',
+                                        type: "POST",
+                                        success: function () {
+                                            alert('Delete successfully!');
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            });
+                        </script>
+                    <% } %>
+                    <% })%>
+                </table>
+            </div>
+        </div>
+	</div>
+    <%- include('other/footer') %>
+</body>

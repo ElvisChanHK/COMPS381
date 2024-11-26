@@ -1,0 +1,51 @@
+<%- include('other/head', {title: 'User List'}) %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include('other/nav') %>
+    <%- include('other/header1', {username}) %>
+    <%- include('other/header2', {pathname}) %>
+	<div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+        <div class="container">
+		    <div class="card-body p-4">
+            <div class="position-relative top-50 start-50 translate-middle">
+		    	<h3>User List</h3>
+            </div>
+		        <table class="table table-striped">
+                    <tr>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th></th>
+                    </tr>
+                    <% user_list.forEach((user,index) => {%>
+                    <tr>
+                        <td><%= user.username %></td>
+                        <td><%= user.role %></td>
+                        <td><button class="btn btn-primary" onclick="location.href='/user/reset/<%= user.username %>'">Edit</button></td>
+                        <td><button class="btn btn-danger" id="delete<%= user.username %>">Delete</button></td>
+                    </tr>
+                    <script>
+                        $('#delete<%= user.username %>').click(function (event) {
+                            if (confirm('Are you comfirm delete?')) {
+                                $.ajax({
+                                    url: '/user/delete/<%= user.username %>',
+                                    type: "POST",
+                                    success: function () {
+                                        alert('Delete successfully!');
+                                        location.reload();
+                                    },
+                                    error: function () {
+                                        alert('You can\'t delete youself!');
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                    <% }) %>
+                </table>
+            </div>
+        </div>
+	</div>
+    <%- include('other/footer') %>
+</body>

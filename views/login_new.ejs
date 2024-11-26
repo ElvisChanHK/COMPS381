@@ -1,0 +1,77 @@
+<%- include('other/head', {title: "Login"}) %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  
+    <script type="text/javascript">
+      $(document).ready(() => {
+  
+        $("#form").submit((event) => {
+          event.preventDefault();
+  
+          $.ajax({
+            type: 'POST',
+            url: '/auth/login',
+            data: $('#form').serialize(),
+            dataType: "json",
+            success: (data, textStatus) => {
+                          if (data.redirect) {
+                              window.location.href = data.redirect;
+                          }
+            },
+            error: (data, textStatus) => {
+                          console.log(data);
+                          $('#form')[0].reset();
+                          if (data.status == 401) {
+                              document.getElementById("check").innerHTML = data.responseJSON.msg;
+                              setTimeout(() => {
+                                  document.getElementById("check").innerHTML = "";
+                              }, 3000);
+                          }
+            }
+          })
+        });
+  
+      });
+    </script>
+  </head>
+  <body>
+    <div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4">
+            <div class="card-group d-block d-md-flex row">
+              <div class="card col-md-7 p-4 mb-0">
+                <div class="card-body">
+                  <h1>Login</h1>
+                  <p class="text-body-secondary">Sign In to your account</p>
+                  <form id="form" method="post">
+                    <div class="input-group mb-3"><span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="../node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
+                        </svg></span>
+                      <input class="form-control" type="text" name="username" pattern="^(?=[a-zA-Z0-9._]{4,10}$)(?!.*[_.]{2})[^_.].*[^_.]$" placeholder="Username">
+                    </div>
+                    <div class="input-group mb-4"><span class="input-group-text">
+                        <svg class="icon">
+                          <use xlink:href="../node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
+                        </svg></span>
+                      <input class="form-control" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <input type="submit" value="Login" class="btn btn-primary px-4">
+                      </div>
+                    </div>
+                  </form>
+                  <div class="mssg bg-danger">
+                    <span id="check"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('other/footer') %>
+  </body>
+</html>

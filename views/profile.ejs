@@ -1,0 +1,32 @@
+<%- include('other/head', {title: "Profile"}) %>
+</head>
+
+<body>
+	<%- include('other/nav') %>
+    <%- include('other/header1', {username}) %>
+    <%- include('other/header2', {pathname}) %>
+	<div class="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+        <div class="container">
+		    <div class="card-body p-4">
+            <div class="position-absolute top-50 start-50 translate-middle">
+		    	<h3>Profile</h3>
+            </div>
+		        <table class="table table-striped">
+                    <tr>
+                        <td>Username</td>
+                        <td><%= username %></td>
+                    </tr>
+					<tr>
+						<td>Role</td>
+						<td><%= role %></td>
+					</tr>
+					<tr>
+						<td>API Key</td>
+						<td><%= apikey %></td>
+					</tr>
+                </table>
+            </div>
+        </div>
+	</div>
+	<%- include('other/footer') %>
+</body>
