@@ -17,7 +17,61 @@ gulp
 Open https://localhost:3999/ , it should be redirect to login page.
 
 After login, user can edit the product stock and change their initial password.
+# 381project-Group1
 
+## Project Info
+- **Project Name**: Product Management System
+- **Group Info**:
+  - Member 1: John Doe (SID: 12345678)
+  - Member 2: Jane Smith (SID: 87654321)
+  - Member 3: Alice Wong (SID: 11223344)
+
+## Project File Intro
+- `server.js`: Main server file implementing authentication, CRUD web pages, and RESTful APIs.
+- `package.json`: Lists all dependencies (e.g., Express, Mongoose, EJS).
+- `public/`: Contains static resources like CSS and JavaScript files.
+- `views/`: EJS templates for web pages (e.g., login, dashboard, CRUD pages).
+- `models/`: MongoDB schemas and configurations.
+
+## Cloud URL
+- [Deployed App](https://381project-group1.onrender.com/)
+
+## Operation Guides
+### Login/Logout Pages
+- **Default Login Credentials**:
+  - Admin: `username: admin, password: admin`
+  - Demo User: `username: demo, password: demo`
+- Access the app at the cloud URL and log in using the credentials above.
+- To log out, click the avatar in the top-right corner.
+
+### CRUD Web Pages
+- **Create**: Use the "Add" button on the dashboard to add users or products.
+- **Read**: View product details or user lists on their respective pages.
+- **Update**: Use the "Edit" button to modify product stock or reset passwords.
+- **Delete**: Use the "Delete" button to remove users or products.
+
+### RESTful CRUD Services
+- **Create**:
+  - Add User: `POST /api/user/add`
+  - Add Product: `POST /api/product/add`
+- **Read**:
+  - List Users: `GET /api/user/list`
+  - List Products: `GET /api/product/list`
+- **Update**:
+  - Update Product Stock: `POST /api/product/update/stock`
+  - Update Product Info: `POST /api/product/update`
+  - Reset User Password: `POST /api/user/edit/all`
+- **Delete**:
+  - Delete Product: `POST /api/product/delete`
+  - Delete User: `POST /api/user/delete`
+
+## Testing RESTful APIs
+- Use tools like Postman or CURL:
+  ```bash
+  # Example: Add a product
+  curl -X POST 'https://381project-group1.onrender.com/api/product/add' \
+  -H 'Content-Type: application/json' \
+  -d '{"apikey": "your_api_key", "p_id": 1, "name": "Laptop", "manufacturer": "Dell", "price": 1500, "stock": 20}'
 The default user are:
 |username|password|role |apikey       |
 |--------|--------|-----|-------------|
