@@ -22,9 +22,8 @@ After login, user can edit the product stock and change their initial password.
 ## Project Info
 - **Project Name**: Product Management System
 - **Group Info**:
-  - Member 1: John Doe (SID: 12345678)
-  - Member 2: Jane Smith (SID: 87654321)
-  - Member 3: Alice Wong (SID: 11223344)
+  - Member 1: CHAN Yi Chun, Elvis (SID: 13345200)
+
 
 ## Project File Intro
 - `server.js`: Main server file implementing authentication, CRUD web pages, and RESTful APIs.
@@ -34,7 +33,7 @@ After login, user can edit the product stock and change their initial password.
 - `models/`: MongoDB schemas and configurations.
 
 ## Cloud URL
-- [Deployed App](https://381project-group1.onrender.com/)
+- [Deployed App](https://comps381-7ne3.onrender.com/)
 
 ## Operation Guides
 ### Login/Logout Pages
