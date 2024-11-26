@@ -68,9 +68,11 @@ After login, user can edit the product stock and change their initial password.
 - Use tools like Postman or CURL:
   ```bash
   # Example: Add a product
-  curl -X POST 'https://381project-group1.onrender.com/api/product/add' \
+  curl -X POST 'https://comps381-7ne3.onrender.com/api/product/add' \
   -H 'Content-Type: application/json' \
   -d '{"apikey": "your_api_key", "p_id": 1, "name": "Laptop", "manufacturer": "Dell", "price": 1500, "stock": 20}'
+
+  
 The default user are:
 |username|password|role |apikey       |
 |--------|--------|-----|-------------|
