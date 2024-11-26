@@ -17,7 +17,7 @@ gulp
 Open https://localhost:3999/ , it should be redirect to login page.
 
 After login, user can edit the product stock and change their initial password.
-# 381project-Group1
+# 381Fproject-Group44
 
 ## Project Info
 - **Project Name**: Product Management System
