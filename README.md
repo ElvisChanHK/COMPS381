@@ -72,6 +72,15 @@ After login, user can edit the product stock and change their initial password.
   -H 'Content-Type: application/json' \
   -d '{"apikey": "your_api_key", "p_id": 1, "name": "Laptop", "manufacturer": "Dell", "price": 1500, "stock": 20}'
 
+  curl -X GET 'http://localhost:3999/api/product/list?apikey=your_api_key'
+
+  curl -X POST 'http://localhost:3999/api/product/update/stock' \
+  -H 'Content-Type: application/json' \
+  -d '{"apikey": "your_api_key", "p_id": 1, "stock": 10}'
+
+  curl -X POST 'http://localhost:3999/api/product/delete' \
+  -H 'Content-Type: application/json' \
+  -d '{"apikey": "your_api_key", "p_id": 1}'
   
 The default user are:
 |username|password|role |apikey       |
